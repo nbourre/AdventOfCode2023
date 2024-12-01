@@ -37,6 +37,7 @@ namespace Day01
         static int day01b() {
             string[] lines = System.IO.File.ReadAllLines("input.txt");
             string[] spelledDigits = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+            List<string> convertedLines = new List<string>();
 
             int sum = 0;
             foreach (string line in lines)
@@ -50,6 +51,9 @@ namespace Day01
                         convertedLine = convertedLine.Replace(spelledDigit, (spelledDigits.ToList().IndexOf(spelledDigit) + 1).ToString());
                     }
                 }
+
+                convertedLines.Add(convertedLine);
+
                 foreach (char c in convertedLine)
                 {
                     if (char.IsDigit(c))
@@ -60,6 +64,10 @@ namespace Day01
                 int number = int.Parse(digits[0] + "" + digits[digits.Length - 1]);
                 sum += number;                
             }
+
+            // Save the converted lines to inputConverted.txt
+            System.IO.File.WriteAllLines("inputConverted.txt", convertedLines);
+
             return sum;
 
         }
